@@ -1,3 +1,6 @@
+// react imports
+import React from "react";
+
 // rrd imports
 import { Link, useLoaderData } from "react-router-dom";
 
@@ -20,6 +23,9 @@ import { Table } from "../components/Table";
 // library imports
 import { toast } from "react-toastify";
 
+// types
+import { Budget, Expense } from "../types";
+
 // loader
 export function dashboardLoader() {
   const userName = fetchData("userName");
@@ -29,6 +35,7 @@ export function dashboardLoader() {
 }
 
 // action
+// @ts-ignore
 export async function dashboardAction({ request }) {
   await wait();
   const data = await request.formData();
@@ -37,6 +44,7 @@ export async function dashboardAction({ request }) {
   // new user action
   if (_action === "newUser") {
     try {
+      // @ts-ignore
       localStorage.setItem("userName", JSON.stringify(values.userName));
       return toast.success(`Welcome, ${values.userName}`);
     } catch {
@@ -85,8 +93,14 @@ export async function dashboardAction({ request }) {
   }
 }
 
+type DashboardProps = {
+  userName: string;
+  budgets: Budget[];
+  expenses: Expense[];
+};
+
 export const Dashboard = () => {
-  const { userName, budgets, expenses } = useLoaderData();
+  const { userName, budgets, expenses } = useLoaderData() as DashboardProps;
   return (
     <>
       {userName ? (

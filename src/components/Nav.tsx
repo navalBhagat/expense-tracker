@@ -1,18 +1,21 @@
+// react imports
+import React from "react";
+
 // rrd imports
 import { Form, NavLink } from "react-router-dom";
 
 // library
-export { TrashIcon } from "@heroicons/react/24/solid";
-
-// assets
-import logomark from "../assets/logomark.svg";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-export const Nav = ({ userName }) => {
+type NavProps = {
+  userName: string;
+};
+
+export const Nav: React.FC<NavProps> = ({ userName }) => {
   return (
     <nav>
       <NavLink to="/" aria-label="Go to home">
-        <img src={logomark} alt="" height={30} />
+        <img src={"/assets/logomark.svg"} alt="" height={30} />
         <span>Expense Tracker</span>
       </NavLink>
       {userName && (
@@ -20,6 +23,7 @@ export const Nav = ({ userName }) => {
           method="post"
           action="/logout"
           onSubmit={(event) => {
+            // @ts-ignore
             if (!confirm("Delete user and all data?")) {
               event.preventDefault();
             }

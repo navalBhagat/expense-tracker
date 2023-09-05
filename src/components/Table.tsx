@@ -1,7 +1,19 @@
+// react imports
+import React from "react";
+
 // component import
 import { ExpenseItem } from "./ExpenseItem";
+import { Expense } from "../types";
 
-export const Table = ({ expenses, showBudget = true }) => {
+type TableProps = {
+  expenses: Expense[];
+  showBudget?: boolean;
+};
+
+export const Table: React.FC<TableProps> = ({
+  expenses,
+  showBudget = true,
+}) => {
   return (
     <div className="table">
       <table>

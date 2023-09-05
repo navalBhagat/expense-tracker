@@ -1,3 +1,6 @@
+// react imports
+import React from "react";
+
 // rrd imports
 import { Link, useFetcher } from "react-router-dom";
 
@@ -11,7 +14,18 @@ import {
 // library imports
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-export const ExpenseItem = ({ expense, showBudget = true }) => {
+// types
+import { Expense } from "../types";
+
+type ExpenseItemProps = {
+  expense: Expense;
+  showBudget?: boolean;
+};
+
+export const ExpenseItem: React.FC<ExpenseItemProps> = ({
+  expense,
+  showBudget = true,
+}) => {
   const fetcher = useFetcher();
 
   const budget = getAllMatchingItems({
@@ -20,6 +34,8 @@ export const ExpenseItem = ({ expense, showBudget = true }) => {
     value: expense.budgetId,
   })[0];
 
+  const style = { "--accent": budget.color } as React.CSSProperties;
+
   return (
     <>
       <td>{expense.name}</td>
@@ -27,10 +43,7 @@ export const ExpenseItem = ({ expense, showBudget = true }) => {
       <td>{formatDateToLocalString(expense.createdAt)}</td>
       {showBudget && (
         <td>
-          <Link
-            to={`/budget/${budget.id}`}
-            style={{ "--accent": budget.color }}
-          >
+          <Link to={`/budget/${budget.id}`} style={style}>
             {budget.name}
           </Link>
         </td>

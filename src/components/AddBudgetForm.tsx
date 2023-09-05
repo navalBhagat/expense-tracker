@@ -1,5 +1,5 @@
 // react imports
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 // rrd imports
 import { Form, useFetcher } from "react-router-dom";
@@ -11,12 +11,15 @@ export const AddBudgetForm = () => {
   const fetcher = useFetcher();
   const isSubmitting = fetcher.state === "submitting";
 
-  const formRef = useRef();
-  const focusRef = useRef();
+  const formRef = useRef(null);
+  const focusRef = useRef(null);
 
   useEffect(() => {
     if (!isSubmitting) {
+      // @ts-ignore
       formRef.current.reset();
+
+      // @ts-ignore
       focusRef.current.focus();
     }
   }, [isSubmitting]);

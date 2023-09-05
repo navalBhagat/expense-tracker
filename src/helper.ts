@@ -1,3 +1,6 @@
+// ts imports
+import { DateTimeFormatOptions } from "intl";
+
 // slow down
 export const wait = () =>
   new Promise((res) => setTimeout(res, Math.random() * 800));
@@ -9,8 +12,8 @@ const generateRandomColor = () => {
 };
 
 // Local storage functions
-export const fetchData = (key) => {
-  return JSON.parse(localStorage.getItem(key));
+export const fetchData = (key: string) => {
+  return JSON.parse(localStorage.getItem(key)!);
 };
 
 // Get all items from local storage
@@ -20,7 +23,11 @@ export const getAllMatchingItems = ({ category, key, value }) => {
 };
 
 // Delete item from local storage
-export const deleteItem = ({ key, id }) => {
+type DeleteItemProps = { 
+  key: string,
+  id?: string,
+}
+export const deleteItem = ({ key, id }: DeleteItemProps) => {
   const existingData = fetchData(key);
   if (id) {
     const newData = existingData.filter((item) => item.id !== id);
@@ -81,7 +88,7 @@ export const calculateSpentByBudget = (budgetId) => {
 
 // format date
 export const formatDateToLocalString = (epoch) => {
-  const options = { day: "2-digit", month: "2-digit", year: "numeric" };
+  const options: DateTimeFormatOptions = { day: "2-digit", month: "2-digit", year: "2-digit" };
   return new Date(epoch).toLocaleDateString(undefined, options);
 };
 

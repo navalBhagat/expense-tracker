@@ -1,3 +1,6 @@
+// react imports
+import React from "react";
+
 // rrd imports
 import { useLoaderData } from "react-router-dom";
 
@@ -12,7 +15,11 @@ import { Table } from "../components/Table";
 // library imports
 import { toast } from "react-toastify";
 
+// types
+import { Budget, Expense } from "../types";
+
 // loader
+// @ts-ignore
 export async function budgetLoader({ params }) {
   const budget = await getAllMatchingItems({
     category: "budgets",
@@ -34,10 +41,13 @@ export async function budgetLoader({ params }) {
 }
 
 // action
-// action
+// @ts-ignore
 export async function budgetAction({ request }) {
   const data = await request.formData();
-  const { _action, ...values } = Object.fromEntries(data);
+  const { _action, ...values } = Object.fromEntries(data) as Record<
+    string,
+    unknown
+  >;
 
   // create expense action
   if (_action === "createExpense") {
@@ -58,7 +68,7 @@ export async function budgetAction({ request }) {
   if (_action === "deleteExpense") {
     try {
       // delete an expense
-      deleteItem({ key: "expenses", id: values.expenseId });
+      deleteItem({ key: "expenses", id: values.expenseId as string });
       return toast.success("Expense deleted!");
     } catch {
       throw new Error("There was a problem deleting your expense.");
@@ -66,10 +76,16 @@ export async function budgetAction({ request }) {
   }
 }
 
+type BudgetPageProps = {
+  budget: Budget;
+  expenses: Expense[];
+};
+
 export const BudgetPage = () => {
-  const { budget, expenses } = useLoaderData();
+  const { budget, expenses } = useLoaderData() as BudgetPageProps;
+  const style = { "--accent": budget.color } as React.CSSProperties;
   return (
-    <div className="grid-lg" style={{ "--accent": budget.color }}>
+    <div className="grid-lg" style={style}>
       <h1 className="h2">
         <span className="accent">{budget.name}</span> Overview
       </h1>

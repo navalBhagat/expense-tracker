@@ -1,16 +1,32 @@
-import { Link, useNavigate, useRouteError } from "react-router-dom";
+// react imports
+import React from "react";
+
+// rrd imports
+import {
+  Link,
+  isRouteErrorResponse,
+  useNavigate,
+  useRouteError,
+} from "react-router-dom";
 
 // library imports
 import { HomeIcon, ArrowUturnLeftIcon } from "@heroicons/react/24/solid";
 
 export const Error = () => {
-  const error = useRouteError();
   const navigate = useNavigate();
+  const error = useRouteError();
+  let errorMessage: string;
+
+  if (isRouteErrorResponse(error)) {
+    errorMessage = error.error?.message || error.statusText;
+  } else {
+    errorMessage = "Unknown error";
+  }
 
   return (
     <div className="error">
       <h1>Uh oh! We've got a problem.</h1>
-      <p>{error.message || error.statusText}</p>
+      <p>{errorMessage}</p>
       <div className="flex-md">
         <button className="btn btn--dark" onClick={() => navigate(-1)}>
           <ArrowUturnLeftIcon width={20} />

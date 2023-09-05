@@ -1,5 +1,5 @@
 // react imports
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 // rrd imports
 import { useFetcher } from "react-router-dom";
@@ -7,18 +7,28 @@ import { useFetcher } from "react-router-dom";
 // library imports
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 
-export const AddExpenseForm = ({ budgets }) => {
+// types
+import { Budget } from "../types";
+
+type AddExpenseFormProps = {
+  budgets: Budget[];
+};
+
+export const AddExpenseForm: React.FC<AddExpenseFormProps> = ({ budgets }) => {
   const fetcher = useFetcher();
   const isSubmitting = fetcher.state === "submitting";
-  const formRef = useRef();
-  const focusRef = useRef();
+  const formRef = useRef(null);
+  const focusRef = useRef(null);
 
   useEffect(() => {
     if (!isSubmitting) {
+      // @ts-ignore
       // clear form
       formRef.current.reset();
+
+      // @ts-ignore
       // reset focus
-      focusRef.current.focus();
+      focusRef.current?.focus();
     }
   }, [isSubmitting]);
 
@@ -27,7 +37,8 @@ export const AddExpenseForm = ({ budgets }) => {
       <h2 className="h3">
         Add New{" "}
         <span className="accent">
-          {budgets.length === 1 && `${budgets.map((budget) => budget.name)}`}
+          {budgets.length === 1 &&
+            `${budgets.map((budget: Budget) => budget.name)}`}
         </span>{" "}
         Expense
       </h2>
@@ -64,8 +75,8 @@ export const AddExpenseForm = ({ budgets }) => {
           <label htmlFor="newExpenseBudget">Budget Category</label>
           <select name="newExpenseBudget" id="newExpenseBudget" required>
             {budgets
-              .sort((a, b) => a.createdAt - b.createdAt)
-              .map((budget) => {
+              .sort((a: any, b: any) => a.createdAt - b.createdAt)
+              .map((budget: Budget) => {
                 return (
                   <option key={budget.id} value={budget.id}>
                     {budget.name}

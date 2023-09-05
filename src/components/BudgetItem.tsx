@@ -1,3 +1,6 @@
+// react imports
+import React from "react";
+
 // rrd imports
 import { Form, Link } from "react-router-dom";
 
@@ -12,12 +15,25 @@ import {
 import { BanknotesIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-export const BudgetItem = ({ budget, showDelete = false }) => {
+// types
+import { Budget } from "../types";
+
+type BudgetItemProps = {
+  budget: Budget;
+  showDelete?: boolean;
+};
+
+export const BudgetItem: React.FC<BudgetItemProps> = ({
+  budget,
+  showDelete = false,
+}) => {
   const { id, name, amount, color } = budget;
   const spent = calculateSpentByBudget(id);
 
+  const style = { "--accent": color } as React.CSSProperties;
+
   return (
-    <div className="budget" style={{ "--accent": color }}>
+    <div className="budget" style={style}>
       <div className="progress-text">
         <h3>{name}</h3>
         <p>{formatCurrency(amount)} Budgeted</p>
@@ -35,6 +51,7 @@ export const BudgetItem = ({ budget, showDelete = false }) => {
             method="post"
             action="delete"
             onSubmit={(event) => {
+              // @ts-ignore
               if (!confirm("Are you sure you want to delete this budget?")) {
                 event.preventDefault();
               }

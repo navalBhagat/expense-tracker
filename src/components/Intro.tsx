@@ -1,10 +1,11 @@
+// react imports
+import React from "react";
+
+// rrd imports
 import { Form } from "react-router-dom";
 
 // library imports
 import { UserPlusIcon } from "@heroicons/react/24/solid";
-
-// assets
-import illustration from "../assets/illustration.jpg";
 
 export const Intro = () => {
   return (
@@ -21,7 +22,7 @@ export const Intro = () => {
           <input
             type="text"
             name="userName"
-            req
+            required
             placeholder="What is your name?"
             aria-label="Your Name"
             autoComplete="given-name"
@@ -33,7 +34,11 @@ export const Intro = () => {
           </button>
         </Form>
       </div>
-      <img src={illustration} alt="Person with money" width={600} />
+      <img
+        src={"/assets/illustration.jpg"}
+        alt="Person with money"
+        width={600}
+      />
     </div>
   );
 };

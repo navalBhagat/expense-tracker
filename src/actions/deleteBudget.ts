@@ -7,6 +7,10 @@ import { toast } from "react-toastify";
 // helpers
 import { deleteItem, getAllMatchingItems } from "../helper";
 
+// types
+import { Expense } from "../types";
+
+// @ts-ignore
 export function deleteBudget({ params }) {
   try {
     deleteItem({ key: "budgets", id: params.id });
@@ -16,7 +20,7 @@ export function deleteBudget({ params }) {
       value: params.id,
     });
 
-    expenses.forEach((expense) => {
+    expenses.forEach((expense: Expense) => {
       deleteItem({ key: "expenses", id: expense.id });
     });
 

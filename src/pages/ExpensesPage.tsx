@@ -1,3 +1,6 @@
+// react imports
+import React from "react";
+
 // rrd imports
 import { useLoaderData } from "react-router-dom";
 
@@ -9,6 +12,7 @@ import { Table } from "../components/Table";
 
 // library imports
 import { toast } from "react-toastify";
+import { Expense } from "../types";
 
 // loader
 export function expensesLoader() {
@@ -17,6 +21,7 @@ export function expensesLoader() {
 }
 
 // action
+// @ts-ignore
 export async function expensesAction({ request }) {
   const data = await request.formData();
   const { _action, ...values } = Object.fromEntries(data);
@@ -33,8 +38,12 @@ export async function expensesAction({ request }) {
   }
 }
 
+type ExpensesPageProps = {
+  expenses: Expense[];
+};
+
 export const ExpensesPage = () => {
-  const { expenses } = useLoaderData();
+  const { expenses } = useLoaderData() as ExpensesPageProps;
   return (
     <div className="grid-lg">
       <h1>All Expenses</h1>
