@@ -5,7 +5,7 @@ import { redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 
 // helpers
-import { deleteItem, getAllMatchingItems } from "../helper";
+import { deleteItem, getAllMatchingItems } from "../helpers";
 
 // types
 import { Expense } from "../types";

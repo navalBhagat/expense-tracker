@@ -1,4 +1,4 @@
-import { fetchData } from "../helper";
+import { fetchData } from "../helpers";
 
 export function expensesLoader() {
   const expenses = fetchData("expenses");

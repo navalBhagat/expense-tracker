@@ -2,7 +2,7 @@
 import { Outlet, useLoaderData } from "react-router-dom";
 
 // helper functions
-import { fetchData } from "../helper";
+import { fetchData } from "../helpers";
 
 // components
 import { Nav } from "../components/Nav/Nav";

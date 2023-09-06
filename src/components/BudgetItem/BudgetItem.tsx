@@ -2,7 +2,7 @@
 import React from "react";
 
 // helpers
-import { calculateSpentByBudget } from "../../helper";
+import { calculateSpentByBudget } from "../../helpers";
 
 // types
 import { Budget } from "../../types";

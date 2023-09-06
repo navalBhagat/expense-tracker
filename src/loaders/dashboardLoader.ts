@@ -1,5 +1,5 @@
 // helper functions
-import { fetchData } from "../helper";
+import { fetchData } from "../helpers";
 
 export function dashboardLoader() {
   const userName = fetchData("userName");

@@ -1,7 +1,7 @@
 import React from "react";
 
 // helpers
-import { formatCurrency, formatPercentage } from "../../helper";
+import { formatCurrency, formatPercentage } from "../../helpers";
 
 type BudgetProgressProps = {
   name: string;

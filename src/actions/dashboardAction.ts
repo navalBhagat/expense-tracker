@@ -1,5 +1,5 @@
 // helpers
-import { wait } from "../helper";
+import { wait } from "../helpers";
 
 // _actions
 import { newUserAction } from "./newUser";

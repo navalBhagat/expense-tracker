@@ -2,7 +2,7 @@
 import { toast } from "react-toastify";
 
 // helpers
-import { deleteItem } from "../helper";
+import { deleteItem } from "../helpers";
 
 export function deleteExpenseAction(values: any) {
   try {

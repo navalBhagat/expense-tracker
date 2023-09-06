@@ -6,7 +6,7 @@ import {
   formatCurrency,
   formatDateToLocalString,
   getAllMatchingItems,
-} from "../../helper";
+} from "../../helpers";
 
 // types
 import { Expense } from "../../types";

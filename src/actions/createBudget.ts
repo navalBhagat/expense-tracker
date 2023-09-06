@@ -2,7 +2,7 @@
 import { toast } from "react-toastify";
 
 // helpers
-import { createBudget } from "../helper";
+import { createBudget } from "../helpers";
 
 export function createBudgetAction(values: any) {
   try {

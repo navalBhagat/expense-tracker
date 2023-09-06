@@ -1,5 +1,5 @@
 // helpers
-import { getAllMatchingItems } from "../helper";
+import { getAllMatchingItems } from "../helpers";
 
 export async function budgetLoader({ params }: any) {
   const budget = await getAllMatchingItems({

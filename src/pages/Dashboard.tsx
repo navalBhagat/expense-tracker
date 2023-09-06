@@ -8,11 +8,8 @@ import { Link, useLoaderData } from "react-router-dom";
 import { Budget, Expense } from "../types";
 
 // components
+import { Welcome } from "../components/Dashboard/Welcome";
 import { SignUp } from "../components/SplashScreen/SignUp";
-import { NoBudgets } from "../components/Dashboard/NoBudgets";
-import { DashboardForms } from "../components/Dashboard/DashboardForms";
-import { ExistingBudgets } from "../components/Dashboard/ExistingBudgets";
-import { ExistingExpenses } from "../components/Dashboard/ExistingExpenses";
 
 type DashboardProps = {
   userName: string;
@@ -25,22 +22,7 @@ export const Dashboard = () => {
   return (
     <>
       {userName ? (
-        <div className="dashboard">
-          <h1>
-            Welcome back, <span className="accent">{userName}</span>
-          </h1>
-          <div className="grid-sm">
-            {budgets && budgets.length > 0 ? (
-              <div className="grid-lg">
-                <DashboardForms budgets={budgets} />
-                <ExistingBudgets budgets={budgets} />
-                <ExistingExpenses expenses={expenses} />
-              </div>
-            ) : (
-              <NoBudgets />
-            )}
-          </div>
-        </div>
+        <Welcome userName={userName} budgets={budgets} expenses={expenses} />
       ) : (
         <SignUp />
       )}
