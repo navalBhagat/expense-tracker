@@ -12,21 +12,30 @@ const generateRandomColor = () => {
 };
 
 // Local storage functions
-export const fetchData = (key: string) => {
+export const fetchData = (key: string): any[] => {
   return JSON.parse(localStorage.getItem(key)!);
 };
 
 // Get all items from local storage
-export const getAllMatchingItems = ({ category, key, value }) => {
+type getAllMatchingItemsProps = {
+  category: string;
+  key: string;
+  value: string;
+};
+export const getAllMatchingItems = ({
+  category,
+  key,
+  value,
+}: getAllMatchingItemsProps) => {
   const data = fetchData(category) ?? [];
   return data.filter((item) => item[key] === value);
 };
 
 // Delete item from local storage
-type DeleteItemProps = { 
-  key: string,
-  id?: string,
-}
+type DeleteItemProps = {
+  key: string;
+  id?: string;
+};
 export const deleteItem = ({ key, id }: DeleteItemProps) => {
   const existingData = fetchData(key);
   if (id) {
@@ -37,7 +46,11 @@ export const deleteItem = ({ key, id }: DeleteItemProps) => {
 };
 
 // Create budget
-export const createBudget = ({ name, amount }) => {
+type CreateBudgetProps = {
+  name: string;
+  amount: number;
+};
+export const createBudget = ({ name, amount }: CreateBudgetProps) => {
   const newItem = {
     id: crypto.randomUUID(),
     name: name,
@@ -54,7 +67,16 @@ export const createBudget = ({ name, amount }) => {
 };
 
 // Create expense
-export const createExpense = ({ name, amount, budgetId }) => {
+type CreateExpenseProps = {
+  name: string;
+  amount: number;
+  budgetId: string;
+};
+export const createExpense = ({
+  name,
+  amount,
+  budgetId,
+}: CreateExpenseProps) => {
   const newItem = {
     id: crypto.randomUUID(),
     name: name,
@@ -71,7 +93,7 @@ export const createExpense = ({ name, amount, budgetId }) => {
 };
 
 // Total spent by budget
-export const calculateSpentByBudget = (budgetId) => {
+export const calculateSpentByBudget = (budgetId: string) => {
   const expenses = fetchData("expenses") ?? [];
   const budgetSpent = expenses.reduce((acc, expense) => {
     // check if expense.id === budgetId
@@ -87,13 +109,17 @@ export const calculateSpentByBudget = (budgetId) => {
 // FORMATTING
 
 // format date
-export const formatDateToLocalString = (epoch) => {
-  const options: DateTimeFormatOptions = { day: "2-digit", month: "2-digit", year: "2-digit" };
+export const formatDateToLocalString = (epoch: string) => {
+  const options: DateTimeFormatOptions = {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit",
+  };
   return new Date(epoch).toLocaleDateString(undefined, options);
 };
 
 // format percentages
-export const formatPercentage = (amount) => {
+export const formatPercentage = (amount: number) => {
   return amount.toLocaleString(undefined, {
     style: "percent",
     minimumFractionDigits: 0,
@@ -101,7 +127,7 @@ export const formatPercentage = (amount) => {
 };
 
 // format currency
-export const formatCurrency = (amount) => {
+export const formatCurrency = (amount: number) => {
   return amount.toLocaleString(undefined, {
     style: "currency",
     currency: "EUR",

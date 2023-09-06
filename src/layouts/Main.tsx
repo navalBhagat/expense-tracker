@@ -5,7 +5,7 @@ import { Outlet, useLoaderData } from "react-router-dom";
 import { fetchData } from "../helper";
 
 // components
-import { Nav } from "../components/Nav";
+import { Nav } from "../components/Nav/Nav";
 import React from "react";
 
 // loader

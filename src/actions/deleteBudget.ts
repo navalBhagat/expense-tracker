@@ -10,8 +10,11 @@ import { deleteItem, getAllMatchingItems } from "../helper";
 // types
 import { Expense } from "../types";
 
-// @ts-ignore
-export function deleteBudget({ params }) {
+type DeleteBudgetProps = {
+  params?: any;
+};
+
+export const deleteBudget = ({ params }: DeleteBudgetProps) => {
   try {
     deleteItem({ key: "budgets", id: params.id });
     const expenses = getAllMatchingItems({
@@ -30,4 +33,4 @@ export function deleteBudget({ params }) {
   }
 
   return redirect("/");
-}
+};
