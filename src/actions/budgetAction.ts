@@ -14,4 +14,6 @@ export async function budgetAction({ request }: any) {
 
   // delete expense actioon
   if (_action === "deleteExpense") deleteExpenseAction(values);
+
+  return null;
 }

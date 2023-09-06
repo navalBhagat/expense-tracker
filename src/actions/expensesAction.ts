@@ -6,4 +6,6 @@ export async function expensesAction({ request }: any) {
 
   // delete expense actioon
   if (_action === "deleteExpense") deleteExpenseAction(values);
+
+  return null;
 }
