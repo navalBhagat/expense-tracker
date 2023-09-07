@@ -133,3 +133,8 @@ export const formatCurrency = (amount: number) => {
     currency: "EUR",
   });
 };
+
+// Backend-compatible
+export const fetchUserFromStorage = () => {
+  return fetchData("user");
+};

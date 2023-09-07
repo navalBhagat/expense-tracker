@@ -5,24 +5,28 @@ import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 
 // types
-import { Budget, Expense } from "../types";
+import { Budget, Expense, User } from "../types";
 
 // components
 import { Welcome } from "../components/Dashboard/Welcome";
 import { SignUp } from "../components/SplashScreen/SignUp";
 
 type DashboardProps = {
-  userName: string;
+  user: User;
   budgets: Budget[];
   expenses: Expense[];
 };
 
 export const Dashboard = () => {
-  const { userName, budgets, expenses } = useLoaderData() as DashboardProps;
+  const { user, budgets, expenses } = useLoaderData() as DashboardProps;
   return (
     <>
-      {userName ? (
-        <Welcome userName={userName} budgets={budgets} expenses={expenses} />
+      {user ? (
+        <Welcome
+          userName={user.userName}
+          budgets={budgets}
+          expenses={expenses}
+        />
       ) : (
         <SignUp />
       )}

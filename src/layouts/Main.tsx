@@ -7,22 +7,23 @@ import { fetchData } from "../helpers";
 // components
 import { Nav } from "../components/Nav/Nav";
 import React from "react";
+import { User } from "../types";
 
 // loader
 export function mainLoader() {
-  const userName = fetchData("userName");
-  return { userName };
+  const user = fetchData("user");
+  return { user };
 }
 
 type MainProps = {
-  userName: string;
+  user: User;
 };
 
 export const Main = () => {
-  const { userName } = useLoaderData() as MainProps;
+  const { user } = useLoaderData() as MainProps;
   return (
     <div className="layout">
-      <Nav userName={userName} />
+      <Nav userName={user?.userName} />
       <main>
         <Outlet />
       </main>
