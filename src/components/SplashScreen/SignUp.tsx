@@ -3,14 +3,14 @@ import React from "react";
 
 // components
 import { Title } from "./Title";
-import { CreateAccountForm } from "./Form";
+import { AccountForm } from "./Form";
 
 export const SignUp = () => {
   return (
     <div className="intro">
       <div>
         <Title />
-        <CreateAccountForm />
+        <AccountForm />
       </div>
       <img
         src={"/assets/illustration.jpg"}

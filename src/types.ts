@@ -13,3 +13,9 @@ export interface Expense {
   amount: number;
   budgetId: string;
 }
+
+export interface User {
+  id: string;
+  userName: string;
+  budgets: string[];
+}
