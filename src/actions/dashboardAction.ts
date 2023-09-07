@@ -1,8 +1,6 @@
-// helpers
-import { wait } from "../helpers";
-
 // _actions
-import { findOrCreateUserAction } from "./newUser";
+import { findOrCreateUserAction } from "../api/findOrCreateNewUser";
+import { getBudgetsByIds } from "../api/getBudgetsByIds";
 import { createBudgetAction } from "./createBudget";
 import { createExpenseAction } from "./createExpense";
 import { deleteExpenseAction } from "./deleteExpense";
@@ -11,8 +9,11 @@ export async function dashboardAction({ request }: any) {
   const data = await request.formData();
   const { _action, ...values } = Object.fromEntries(data);
 
-  // create user action
-  if (_action === "findOrCreateUser") await findOrCreateUserAction(values);
+  // create user action and extract budgets if present
+  if (_action === "findOrCreateUser") {
+    const user = await findOrCreateUserAction(values);
+    await getBudgetsByIds(user);
+  }
 
   // create budget action
   if (_action === "createBudget") createBudgetAction(values);
