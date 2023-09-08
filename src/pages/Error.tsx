@@ -9,15 +9,8 @@ import { GoHome } from "../components/ErrorPage/GoHome";
 import { GoBack } from "../components/ErrorPage/GoBack";
 
 export const Error = () => {
-  const error = useRouteError();
-  let errorMessage: string;
-
-  if (isRouteErrorResponse(error)) {
-    errorMessage = error.error?.message || error.statusText;
-  } else {
-    console.log(error);
-    errorMessage = "Unknown error";
-  }
+  const error: any = useRouteError();
+  let errorMessage = error.message || error.statusText;
 
   return (
     <div className="error">

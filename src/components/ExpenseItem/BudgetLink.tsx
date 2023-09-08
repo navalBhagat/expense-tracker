@@ -11,7 +11,7 @@ type BudgetLinkProps = {
 };
 
 export const BudgetLink: React.FC<BudgetLinkProps> = ({ budget }) => {
-  const style = { "--accent": budget.color } as React.CSSProperties;
+  const style = { "--accent": budget?.color } as React.CSSProperties;
   return (
     <td>
       <Link to={`/budget/${budget.id}`} style={style}>

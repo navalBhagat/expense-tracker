@@ -25,6 +25,8 @@ export async function getBudgetsByIds(user: User) {
     });
 
     const budgets: BudgetBackend[] = data as BudgetBackend[];
+
+    // add colors
     const budgetsWithColors = setColors(budgets);
     localStorage.setItem("budgets", JSON.stringify(budgetsWithColors));
   } catch {

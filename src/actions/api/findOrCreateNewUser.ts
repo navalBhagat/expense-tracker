@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 // types
 import { User } from "../../types";
 
-export async function findOrCreateUserAction(values: any) {
+export async function findOrCreateUser(values: any) {
   try {
     const data = await fetch(
       "http://localhost:8080/user?name=" + values.userName,

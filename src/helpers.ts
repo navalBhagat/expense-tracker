@@ -1,10 +1,11 @@
 // ts imports
 import { DateTimeFormatOptions } from "intl";
+
+// types
 import { Budget, BudgetBackend } from "./types";
 
-// slow down
-export const wait = () =>
-  new Promise((res) => setTimeout(res, Math.random() * 800));
+// api calls
+import { createBudgetForUser } from "./actions/api/createBudgetForUser";
 
 // colors
 const generateRandomColor = (budgetLength?: number) => {
@@ -62,19 +63,22 @@ type CreateBudgetProps = {
   amount: number;
 };
 export const createBudget = ({ name, amount }: CreateBudgetProps) => {
-  const newItem = {
+  const existingBudgets = fetchData("budgets") ?? [];
+
+  const newItem: Budget = {
     id: crypto.randomUUID(),
     name: name,
     createdAt: Date.now(),
     amount: +amount,
-    color: generateRandomColor(),
+    color: generateRandomColor(existingBudgets.length),
   };
 
-  const existingBudgets = fetchData("budgets") ?? [];
-  return localStorage.setItem(
+  localStorage.setItem(
     "budgets",
     JSON.stringify([...existingBudgets, newItem])
   );
+
+  return newItem;
 };
 
 // Create expense

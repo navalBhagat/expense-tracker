@@ -4,15 +4,25 @@ import { toast } from "react-toastify";
 // helpers
 import { createBudget } from "../helpers";
 
-export function createBudgetAction(values: any) {
+// api calls
+import { createBudgetForUser } from "./api/createBudgetForUser";
+
+// types
+import { Budget } from "../types";
+
+export async function createBudgetAction(values: any) {
   try {
     // create budget
-    createBudget({
+    const item: Budget = createBudget({
       name: values.newBudget,
       amount: values.newBudgetAmount,
     });
+
+    // persist in database
+    await createBudgetForUser(item);
     return toast.success("Budget created");
-  } catch {
+  } catch (e) {
+    console.log(e);
     throw new Error("There was a problem creating your budget.");
   }
 }
