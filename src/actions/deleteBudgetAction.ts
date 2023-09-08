@@ -18,7 +18,7 @@ type DeleteBudgetProps = {
 export const deleteBudgetAction = ({ params }: DeleteBudgetProps) => {
   try {
     // persist in database
-    deleteBudgetAndExpenses(params.is as string);
+    deleteBudgetAndExpenses(params.id as string);
 
     deleteItem({ key: "budgets", id: params.id });
     const expenses = getAllMatchingItems({
