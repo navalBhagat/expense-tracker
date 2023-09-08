@@ -2,7 +2,7 @@
 import { toast } from "react-toastify";
 
 // types
-import { User } from "../types";
+import { User } from "../../types";
 
 export async function findOrCreateUserAction(values: any) {
   try {

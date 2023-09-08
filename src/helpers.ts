@@ -1,14 +1,25 @@
 // ts imports
 import { DateTimeFormatOptions } from "intl";
+import { Budget, BudgetBackend } from "./types";
 
 // slow down
 export const wait = () =>
   new Promise((res) => setTimeout(res, Math.random() * 800));
 
 // colors
-const generateRandomColor = () => {
-  const existingBudgetLength = fetchData("budgets")?.length ?? 0;
+const generateRandomColor = (budgetLength?: number) => {
+  const existingBudgetLength = budgetLength ?? 0;
   return `${existingBudgetLength * 34} 65% 50%`;
+};
+
+export const setColors = (budgets: BudgetBackend[]): Budget[] => {
+  const budgetsWithColors: Budget[] = [];
+
+  budgets.forEach((budget, index) => {
+    budgetsWithColors.push({ ...budget, color: generateRandomColor(index) });
+  });
+
+  return budgetsWithColors;
 };
 
 // Local storage functions

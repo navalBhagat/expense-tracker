@@ -1,11 +1,8 @@
-// library imports
-import { toast } from "react-toastify";
-
 // helpers
-import { fetchData } from "../helpers";
+import { setColors } from "../../helpers";
 
 // types
-import { BudgetBackend, User } from "../types";
+import { BudgetBackend, User } from "../../types";
 
 export async function getBudgetsByIds(user: User) {
   try {
@@ -28,8 +25,9 @@ export async function getBudgetsByIds(user: User) {
     });
 
     const budgets: BudgetBackend[] = data as BudgetBackend[];
-    localStorage.setItem("budgets", JSON.stringify(budgets));
+    const budgetsWithColors = setColors(budgets);
+    localStorage.setItem("budgets", JSON.stringify(budgetsWithColors));
   } catch {
-    throw new Error("There was a problem creating your budget.");
+    throw new Error("There was a problem retrieving your budgets.");
   }
 }
