@@ -411,6 +411,14 @@ select {
   width: 100%;
 }
 
+.buttons { 
+  margin-left: auto;
+}
+
+.logout { 
+  margin-bottom: 1rem;
+}
+
 /* form */
 .form-wrapper {
   -webkit-box-flex: 1;

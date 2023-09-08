@@ -1,8 +1,8 @@
 // _actions
-import { createBudgetAction } from "./createBudget";
+import { createBudgetAction } from "./createBudgetAction";
 import { createExpenseAction } from "./createExpense";
-import { deleteExpenseAction } from "./deleteExpense";
-import { findOrCreateUserAction } from "./findOrCreateUser";
+import { deleteExpenseAction } from "./deleteExpenseAction";
+import { findOrCreateUserAction } from "./findOrCreateUserAction";
 
 export async function dashboardAction({ request }: any) {
   const data = await request.formData();
@@ -15,10 +15,10 @@ export async function dashboardAction({ request }: any) {
   if (_action === "createBudget") await createBudgetAction(values);
 
   // create expense action
-  if (_action === "createExpense") createExpenseAction(values);
+  if (_action === "createExpense") await createExpenseAction(values);
 
   // delete expense actioon
-  if (_action === "deleteExpense") deleteExpenseAction(values);
+  if (_action === "deleteExpense") await deleteExpenseAction(values);
 
   return null;
 }

@@ -2,7 +2,7 @@
 import { DateTimeFormatOptions } from "intl";
 
 // types
-import { Budget, BudgetBackend } from "./types";
+import { Budget, BudgetBackend, Expense } from "./types";
 
 // api calls
 import { createBudgetForUser } from "./actions/api/createBudgetForUser";
@@ -59,14 +59,15 @@ export const deleteItem = ({ key, id }: DeleteItemProps) => {
 
 // Create budget
 type CreateBudgetProps = {
+  id: string;
   name: string;
   amount: number;
 };
-export const createBudget = ({ name, amount }: CreateBudgetProps) => {
+export const createBudget = ({ id, name, amount }: CreateBudgetProps) => {
   const existingBudgets = fetchData("budgets") ?? [];
 
   const newItem: Budget = {
-    id: crypto.randomUUID(),
+    id: id,
     name: name,
     createdAt: Date.now(),
     amount: +amount,
@@ -83,17 +84,19 @@ export const createBudget = ({ name, amount }: CreateBudgetProps) => {
 
 // Create expense
 type CreateExpenseProps = {
+  expenseId: string;
   name: string;
   amount: number;
   budgetId: string;
 };
 export const createExpense = ({
+  expenseId,
   name,
   amount,
   budgetId,
 }: CreateExpenseProps) => {
-  const newItem = {
-    id: crypto.randomUUID(),
+  const newItem: Expense = {
+    id: expenseId,
     name: name,
     createdAt: Date.now(),
     amount: +amount,
@@ -101,10 +104,11 @@ export const createExpense = ({
   };
 
   const existingExpenses = fetchData("expenses") ?? [];
-  return localStorage.setItem(
+  localStorage.setItem(
     "expenses",
     JSON.stringify([...existingExpenses, newItem])
   );
+  return newItem;
 };
 
 // Total spent by budget

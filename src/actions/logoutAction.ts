@@ -12,7 +12,7 @@ export async function logoutAction() {
   deleteItem({ key: "budgets" });
   deleteItem({ key: "expenses" });
   deleteItem({ key: "user" });
-  toast.success("You've deleted your account!");
+  toast.success("You've successfully logged out!");
 
   // return redirect
   return redirect("/");

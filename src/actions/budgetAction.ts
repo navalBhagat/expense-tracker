@@ -1,6 +1,6 @@
 // actions
 import { createExpenseAction } from "./createExpense";
-import { deleteExpenseAction } from "./deleteExpense";
+import { deleteExpenseAction } from "./deleteExpenseAction";
 
 export async function budgetAction({ request }: any) {
   const data = await request.formData();
@@ -10,10 +10,10 @@ export async function budgetAction({ request }: any) {
   >;
 
   // create expense action
-  if (_action === "createExpense") createExpenseAction(values);
+  if (_action === "createExpense") await createExpenseAction(values);
 
   // delete expense actioon
-  if (_action === "deleteExpense") deleteExpenseAction(values);
+  if (_action === "deleteExpense") await deleteExpenseAction(values);
 
   return null;
 }

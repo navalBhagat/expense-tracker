@@ -1,11 +1,7 @@
-// helpers
-import { fetchUserFromStorage } from "../../helpers";
-
 // types
-import { Budget, BudgetBackend, User } from "../../types";
+import { BudgetBackend, User } from "../../types";
 
-export async function createBudgetForUser(budget: Budget) {
-  const budgetBackend: BudgetBackend = budget;
+export async function createBudgetForUser(budget: BudgetBackend) {
   // get user
   const user: User = JSON.parse(localStorage.getItem("user")!);
 
@@ -15,7 +11,7 @@ export async function createBudgetForUser(budget: Budget) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(budgetBackend),
+    body: JSON.stringify(budget),
   };
 
   const data = await fetch(
@@ -27,5 +23,7 @@ export async function createBudgetForUser(budget: Budget) {
 
   // update user in local storage
   user.budgets = [...user.budgets, data];
-  return localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem("user", JSON.stringify(user));
+
+  return data as string;
 }

@@ -1,5 +1,5 @@
 export type Budget = {
-  id: string;
+  id?: string;
   name: string;
   createdAt: any;
   amount: number;
@@ -7,7 +7,7 @@ export type Budget = {
 };
 
 export interface Expense {
-  id: string;
+  id?: string;
   name: string;
   createdAt: any;
   amount: number;
@@ -22,9 +22,8 @@ export interface User {
   budgets: string[];
 }
 
-// TODO: remove backend part later
 export interface BudgetBackend {
-  id: string;
+  id?: string;
   name: string;
   createdAt: any;
   amount: number;

@@ -9,13 +9,17 @@ import { deleteItem, getAllMatchingItems } from "../helpers";
 
 // types
 import { Expense } from "../types";
+import { deleteBudgetAndExpenses } from "./api/deleteBudgetAndExpenses";
 
 type DeleteBudgetProps = {
   params?: any;
 };
 
-export const deleteBudget = ({ params }: DeleteBudgetProps) => {
+export const deleteBudgetAction = ({ params }: DeleteBudgetProps) => {
   try {
+    // persist in database
+    deleteBudgetAndExpenses(params.is as string);
+
     deleteItem({ key: "budgets", id: params.id });
     const expenses = getAllMatchingItems({
       category: "expenses",

@@ -10,7 +10,7 @@ export const DeleteButton = () => {
   return (
     <Form
       method="post"
-      action="/logout"
+      action="/delete"
       onSubmit={(event) => {
         // @ts-ignore
         if (!confirm("Delete user and all data?")) {

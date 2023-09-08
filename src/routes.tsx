@@ -10,11 +10,12 @@ import { ExpensesPage } from "./pages/ExpensesPage";
 import { Main, mainLoader } from "./layouts/Main";
 
 // Actions
-import { logoutAction } from "./actions/logout";
-import { deleteBudget } from "./actions/deleteBudget";
+import { logoutAction } from "./actions/logoutAction";
+import { deleteBudgetAction } from "./actions/deleteBudgetAction";
 import { budgetAction } from "./actions/budgetAction";
 import { expensesAction } from "./actions/expensesAction";
 import { dashboardAction } from "./actions/dashboardAction";
+import { deleteUserAction } from "./actions/deleteUserAction";
 
 // Loaders
 import { budgetLoader } from "./loaders/budgetLoader";
@@ -51,13 +52,17 @@ export const routes = [
         children: [
           {
             path: "delete",
-            action: deleteBudget,
+            action: deleteBudgetAction,
           },
         ],
       },
       {
         path: "logout",
         action: logoutAction,
+      },
+      {
+        path: "delete",
+        action: deleteUserAction,
       },
     ],
   },
