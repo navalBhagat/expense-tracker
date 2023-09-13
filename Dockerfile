@@ -20,4 +20,4 @@ RUN npm run build
 EXPOSE 5173
 
 # Start your app when the container starts
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "dev-docker"]
