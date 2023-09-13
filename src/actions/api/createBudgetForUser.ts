@@ -15,7 +15,7 @@ export async function createBudgetForUser(budget: BudgetBackend) {
   };
 
   const data = await fetch(
-    "http://localhost:8080/budget?userId=" + user.id,
+    "https://expense-tracker-backend-4fsugardwq-ew.a.run.app/budget?userId=" + user.id,
     requestOptions
   ).then((res) => {
     return res.text();

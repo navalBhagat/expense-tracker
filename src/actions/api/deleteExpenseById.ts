@@ -5,7 +5,7 @@ export async function deleteExpenseById(expenseId: string) {
   };
 
   await fetch(
-    "http://localhost:8080/expense?expenseId=" + expenseId,
+    "https://expense-tracker-backend-4fsugardwq-ew.a.run.app/expense?expenseId=" + expenseId,
     requestOptions
   );
 }

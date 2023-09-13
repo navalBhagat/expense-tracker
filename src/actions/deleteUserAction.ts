@@ -22,7 +22,7 @@ export async function deleteUserAction() {
     method: "DELETE",
   };
 
-  fetch("http://localhost:8080/user?userId=" + user.id, requestOptions);
+  fetch("https://expense-tracker-backend-4fsugardwq-ew.a.run.app/user?userId=" + user.id, requestOptions);
 
   toast.success("You've successfully logged out!");
 

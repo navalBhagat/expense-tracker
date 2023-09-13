@@ -3,5 +3,5 @@ export async function deleteBudgetAndExpenses(budgetId: string) {
     method: "DELETE",
   };
 
-  fetch("http://localhost:8080/budget?budgetId=" + budgetId, requestOptions);
+  fetch("https://expense-tracker-backend-4fsugardwq-ew.a.run.app/budget?budgetId=" + budgetId, requestOptions);
 }

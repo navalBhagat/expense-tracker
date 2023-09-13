@@ -18,7 +18,7 @@ export async function getBudgetsByIds(user: User) {
     };
 
     const data = await fetch(
-      "http://localhost:8080/budgets",
+      "https://expense-tracker-backend-4fsugardwq-ew.a.run.app/budgets",
       requestOptions
     ).then((res) => {
       return res.json();

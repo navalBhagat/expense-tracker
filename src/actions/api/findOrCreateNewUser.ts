@@ -7,7 +7,7 @@ import { User } from "../../types";
 export async function findOrCreateUser(values: any) {
   try {
     const data = await fetch(
-      "http://localhost:8080/user?name=" + values.userName,
+      "https://expense-tracker-backend-4fsugardwq-ew.a.run.app/user?name=" + values.userName,
       { method: "POST" }
     ).then((res) => {
       return res.json();

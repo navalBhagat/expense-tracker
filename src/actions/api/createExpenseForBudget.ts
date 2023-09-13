@@ -11,7 +11,7 @@ export async function createExpenseForBudget(expense: Expense) {
   };
 
   const expenseId = await fetch(
-    "http://localhost:8080/expense",
+    "https://expense-tracker-backend-4fsugardwq-ew.a.run.app/expense",
     requestOptions
   ).then((res) => {
     return res.text();
